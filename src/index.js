@@ -151,5 +151,3 @@ scatterChart.on('click', params => {
         });
     }
 });
-
-console.log(controller);
