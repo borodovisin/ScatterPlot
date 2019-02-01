@@ -39,7 +39,7 @@ const option = {
         left: 40,
         top: 30,
         right: 35,
-        bottom: 26,
+        bottom: 30,
     },
     xAxis: {
         axisLabel: getAxisLabel(),
