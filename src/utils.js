@@ -57,6 +57,11 @@ export const getAxisLabel= () => ({
     formatter: value => SIFormat(value, 2),
   });
 
+  /**
+   * Process the data from zoomdata and create the series.data for echarts
+   * In all data register always put minimum and maximum values for x Axis domain
+   * @param {Array} data 
+   */
 export const getSerieData = data => {
     // Get min and max value from Size axis data
     const [min, max] = controller.dataAccessors[sizeMetricAccesor].getDomain();

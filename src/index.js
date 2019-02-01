@@ -76,6 +76,7 @@ const option = {
     series: {
         type: 'scatter',
         symbolSize: value => {
+            // value[3] minimum value and value[4] maximum value of the xAzxis domain
             return symbolSize([value[3], value[4]],[10, 50], Math.abs(value[2]));
         }, 
     }
