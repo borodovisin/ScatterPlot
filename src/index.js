@@ -5,7 +5,6 @@ import {
     symbolSize,
     getMetricTooltip,
     dynamicAxis,
-    intervalAxisLimit,
     getFont,
     xMetricAccesor,
     yMetricAccesor 
@@ -31,11 +30,6 @@ controller.element.appendChild(chartContainer);
 echarts.registerProcessor(ecModel => {
     dynamicAxis(ecModel, 'yAxis');
     dynamicAxis(ecModel, 'xAxis', _.max(controller.dataAccessors[xMetricAccesor].getDomain()), 'width');
-});
-
-echarts.registerPostUpdate(ecModel => {
-    intervalAxisLimit(scatterChart, ecModel, 'xAxis', 'x');
-    intervalAxisLimit(scatterChart, ecModel, 'yAxis', 'y');
 });
 
 const scatterChart = echarts.init(chartContainer);

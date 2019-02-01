@@ -96,26 +96,3 @@ export const dynamicAxis = (ecModel, finder, text='0', sizeCriteria='height') =>
         }
     });
 }
-
-/**
- * Avoid circle out of chart axis on top and right
- * @param {object} scatterChart 
- * @param object ecModel 
- * @param {string} axisName 
- * @param {string} dimension 
- */
-export const intervalAxisLimit = (scatterChart, ecModel, axisName, dimension) => {
-    if (scatterChart && ecModel && axisName && dimension) {
-        const axisComponent = ecModel.getComponent(axisName);
-        const seriesComponent = ecModel.getComponent('series');
-        const interval = axisComponent.axis.scale.getInterval();
-        const axisLimit = _.last(axisComponent.axis.scale.getExtent());
-        const seriesLimit = _.last(seriesComponent.getData().getDataExtent(dimension)) + interval;
-
-        if (seriesLimit > axisLimit) {
-            axisComponent.option.max = axisLimit + interval;
-            axisComponent.option.interval = interval;
-            scatterChart.resize();
-        }
-    }
-}
