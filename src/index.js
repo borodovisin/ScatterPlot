@@ -76,7 +76,7 @@ const option = {
     series: {
         type: 'scatter',
         symbolSize: value => {
-            return symbolSize([value[3], value[4]],[10, 50], value[2]);
+            return symbolSize([value[3], value[4]],[10, 50], Math.abs(value[2]));
         }, 
     }
 }
