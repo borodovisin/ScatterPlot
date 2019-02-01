@@ -3,7 +3,7 @@ import visualization from '../visualization.json';
 
 export const xMetricAccesor = visualization.variables[1].name;
 export const yMetricAccesor = visualization.variables[2].name;
-const sizeMetricAccesor = visualization.variables[2].name;
+const sizeMetricAccesor = visualization.variables[3].name;
 
 /**
  * Format number to k, M, G (thousand, Million)
@@ -97,16 +97,24 @@ export const dynamicAxis = (ecModel, finder, text='0', sizeCriteria='height') =>
     });
 }
 
-
+/**
+ * Avoid circle out of chart axis on top and right
+ * @param {object} scatterChart 
+ * @param object ecModel 
+ * @param {string} axisName 
+ * @param {string} dimension 
+ */
 export const intervalAxisLimit = (scatterChart, ecModel, axisName, dimension) => {
     if (scatterChart && ecModel && axisName && dimension) {
         const axisComponent = ecModel.getComponent(axisName);
         const seriesComponent = ecModel.getComponent('series');
+        const interval = axisComponent.axis.scale.getInterval();
         const axisLimit = _.last(axisComponent.axis.scale.getExtent());
-        const seriesLimit = _.last(seriesComponent.getData().getDataExtent(dimension));
+        const seriesLimit = _.last(seriesComponent.getData().getDataExtent(dimension)) + interval;
 
-        if (axisLimit === seriesLimit) {
-            axisComponent.option.max = axisLimit + axisComponent.axis.scale.getInterval();
+        if (seriesLimit > axisLimit) {
+            axisComponent.option.max = axisLimit + interval;
+            axisComponent.option.interval = interval;
             scatterChart.resize();
         }
     }

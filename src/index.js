@@ -45,15 +45,17 @@ const option = {
         left: 40,
         top: 30,
         right: 35,
-        bottom: 20,
+        bottom: 26,
     },
     xAxis: {
         axisLabel: getAxisLabel(),
         max: null,
+        interval: null,
     },
     yAxis: {
         axisLabel: getAxisLabel(),
         max: null,
+        interval: null,
     },
     axisPointer: {
         show: true,
