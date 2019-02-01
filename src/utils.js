@@ -50,7 +50,7 @@ export const symbolSize = (domain, range, value) => {
 export const getFont = () => ({
     fontFamily: 'Source Pro, source-sans-pro, Helvetica, Arial, sans-serif',
     fontSize: '14',
-})
+});
 
 export const getAxisLabel= () => ({
     ...getFont(),
